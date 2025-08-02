@@ -1,0 +1,61 @@
+Report ID,Date,Location,Report Text,Submitted By,Hazard Category,AI Output,Summary,Hazard Tags,Cleaned Summary,Cleaned Hazard Tags
+INC-1000,2025-05-27,Office 1,"Tools and cables were scattered on the floor, causing a tripping hazard.",John D.,Poor Housekeeping,"Incident: Disorganized tools and cables on the floor created a tripping hazard.
+
+Hazard Categories: Slip, Trip and Fall Hazards, Workplace Organization and Housekeeping.",,,Incident: Disorganized tools and cables on the floor created a tripping hazard.,"Slip, Trip and Fall Hazards, Workplace Organization and Housekeeping."
+INC-1001,2025-07-08,Warehouse A,A worker entered a confined tank without a permit. No incident occurred.,Anita P.,Confined Space,"Incident: Unauthorized entry into a confined tank without proper permit. No incident occurred.
+
+Likely Hazard Categories: Confined Spaces, Permit-Required Confined Spaces",,"Confined Spaces, Permit-Required Confined Spaces",Incident: Unauthorized entry into a confined tank without proper permit. No incident occurred.,"Confined Spaces, Permit-Required Confined Spaces"
+INC-1002,2025-06-23,Workshop Floor,An employee was found working without safety goggles in a high-risk area.,Anita P.,PPE Violation,"Incident: An employee was observed working without safety goggles in a high-risk area, potentially exposing themselves to flying debris or chemical splashes.
+
+Hazard Categories: Personal Protective Equipment (PPE), Eye Protection",,,"Incident: An employee was observed working without safety goggles in a high-risk area, potentially exposing themselves to flying debris or chemical splashes.","Personal Protective Equipment (PPE), Eye Protection"
+INC-1003,2025-06-13,Chemical Store,Excessive noise levels recorded in the engine room.,Raj K.,Noise Exposure,"Incident: High noise levels detected in the engine room, potentially causing discomfort and hearing damage to employees.
+
+Hazard Categories: Noise Pollution, Hearing Protection",,,"Incident: High noise levels detected in the engine room, potentially causing discomfort and hearing damage to employees.","Noise Pollution, Hearing Protection"
+INC-1004,2025-06-03,Loading Dock,Excessive noise levels recorded in the engine room.,Anita P.,Noise Exposure,"Incident: Elevated noise levels detected in the engine room, potentially posing a risk to the hearing health of employees.
+
+Hazard Categories: Noise Pollution, Hearing Protection",,,"Incident: Elevated noise levels detected in the engine room, potentially posing a risk to the hearing health of employees.","Noise Pollution, Hearing Protection"
+INC-1005,2025-06-25,Warehouse A,An employee was found working without safety goggles in a high-risk area.,Anita P.,PPE Violation,"Incident: An employee was observed working without safety goggles in a high-risk area, potentially exposing themselves to flying debris or chemical splashes.
+
+Hazard Categories: Personal Protective Equipment (PPE), Eye Protection",,,"Incident: An employee was observed working without safety goggles in a high-risk area, potentially exposing themselves to flying debris or chemical splashes.","Personal Protective Equipment (PPE), Eye Protection"
+INC-1006,2025-05-26,Warehouse A,"Tools and cables were scattered on the floor, causing a tripping hazard.",John D.,Poor Housekeeping,"Incident: Tools and cables were left on the floor, leading to a potential tripping hazard.
+
+Hazard Categories: Slip, Trip and Fall; Housekeeping and Organization",,,"Incident: Tools and cables were left on the floor, leading to a potential tripping hazard.","Slip, Trip and Fall; Housekeeping and Organization"
+INC-1007,2025-07-07,Chemical Store,Exposed wires were found near the control panel. No injury was reported.,Raj K.,Electrical Hazard,"Incident: Exposure of live wires near the control panel.
+
+Hazard Categories: Electrical (Direct Contact), Physical (Mechanical)",,,Incident: Exposure of live wires near the control panel.,"Electrical (Direct Contact), Physical (Mechanical)"
+INC-1008,2025-05-25,Office 1,Prolonged awkward posture while lifting boxes caused back strain.,Anita P.,Ergonomic Risk,"Incident: Employee experienced back strain due to prolonged awkward posture while lifting boxes.
+
+Hazard Categories: Ergonomics, Manual Handling",,,Incident: Employee experienced back strain due to prolonged awkward posture while lifting boxes.,"Ergonomics, Manual Handling"
+INC-1009,2025-05-26,Office 1,An employee was found working without safety goggles in a high-risk area.,John D.,PPE Violation,"Incident: Employee working without safety goggles in a high-risk area.
+
+Hazard Categories: Personal Protective Equipment (PPE), Eye Protection",,,Incident: Employee working without safety goggles in a high-risk area.,"Personal Protective Equipment (PPE), Eye Protection"
+INC-1010,2025-06-24,Warehouse A,An employee was found working without safety goggles in a high-risk area.,John D.,PPE Violation,"Incident: Employee working without safety goggles in a high-risk area.
+
+Hazard Categories: Personal Protective Equipment (PPE), Hazardous Materials/Activities",,,Incident: Employee working without safety goggles in a high-risk area.,"Personal Protective Equipment (PPE), Hazardous Materials/Activities"
+INC-1011,2025-06-17,Chemical Store,A worker’s glove got caught in the conveyor belt. Minor hand injury occurred.,Emily S.,Machinery Incident,"Incident: A worker sustained a minor hand injury after their glove got caught in a conveyor belt.
+
+Hazard Categories: Mechanical (Machinery), Personal Protective Equipment (PPE)",,,Incident: A worker sustained a minor hand injury after their glove got caught in a conveyor belt.,"Mechanical (Machinery), Personal Protective Equipment (PPE)"
+INC-1012,2025-05-26,Chemical Store,An employee was found working without safety goggles in a high-risk area.,John D.,PPE Violation,"Incident: Employee working without safety goggles in a high-risk area.
+
+Hazard Categories: Personal Protective Equipment (PPE), Eye Protection",,,Incident: Employee working without safety goggles in a high-risk area.,"Personal Protective Equipment (PPE), Eye Protection"
+INC-1013,2025-05-31,Office 1,Exposed wires were found near the control panel. No injury was reported.,Carlos R.,Electrical Hazard,"Incident: Exposure of live wires near the control panel. No physical harm reported.
+
+Hazard Categories: Electrical Hazards, Physical Hazards (specifically, Contact with Sharp Objects or Parts)",,,Incident: Exposure of live wires near the control panel. No physical harm reported.,"Electrical Hazards, Physical Hazards (specifically, Contact with Sharp Objects or Parts)"
+INC-1014,2025-05-09,Workshop Floor,"A small fire broke out near the welding station, extinguished quickly.",John D.,Fire Hazard,"Incident: A small fire occurred near the welding station, prompting a quick extinguishing.
+
+Likely Hazard Categories: Fire, Welding/Hot Work",,"Fire, Welding/Hot Work","Incident: A small fire occurred near the welding station, prompting a quick extinguishing.","Fire, Welding/Hot Work"
+INC-1015,2025-06-18,Office 1,Exposed wires were found near the control panel. No injury was reported.,Carlos R.,Electrical Hazard,"Incident: Exposure of live wires near the control panel in the workplace. No injury was reported.
+
+Likely Hazard Categories: Electrical Hazards, Physical Hazards (Sharp Objects)",,"Electrical Hazards, Physical Hazards (Sharp Objects)",Incident: Exposure of live wires near the control panel in the workplace. No injury was reported.,"Electrical Hazards, Physical Hazards (Sharp Objects)"
+INC-1016,2025-06-19,Loading Dock,A worker entered a confined tank without a permit. No incident occurred.,Carlos R.,Confined Space,"Incident: Unauthorized entry into a confined tank without proper permit. No incident occurred.
+
+Hazard Categories: Confined Space Entry (Permit Required), Unauthorized Access/Activity",,,Incident: Unauthorized entry into a confined tank without proper permit. No incident occurred.,"Confined Space Entry (Permit Required), Unauthorized Access/Activity"
+INC-1017,2025-06-11,Warehouse A,"A small fire broke out near the welding station, extinguished quickly.",John D.,Fire Hazard,"Incident: A small fire occurred near the welding station, prompting a quick extinguishing.
+
+Hazard Categories: Fire, Welding Hazards (specifically, the potential for sparks or hot metal causing fires)",,,"Incident: A small fire occurred near the welding station, prompting a quick extinguishing.","Fire, Welding Hazards (specifically, the potential for sparks or hot metal causing fires)"
+INC-1018,2025-07-22,Warehouse A,"Tools and cables were scattered on the floor, causing a tripping hazard.",Anita P.,Poor Housekeeping,"Incident: Disorganized tools and cables on the floor created a tripping hazard.
+
+Hazard Categories: Physical Hazards (Tripping), Housekeeping & Workplace Organization",,,Incident: Disorganized tools and cables on the floor created a tripping hazard.,"Physical Hazards (Tripping), Housekeeping & Workplace Organization"
+INC-1019,2025-07-18,Chemical Store,An employee slipped near the entrance due to a wet floor and sustained minor injuries.,Anita P.,Slip and Fall,"Incident Summary: An employee slipped on a wet floor near the entrance, resulting in minor injuries.
+
+Likely Hazard Categories: Slip, Trip and Fall Hazards, Housekeeping and Cleanliness.",,"Slip, Trip and Fall Hazards, Housekeeping and Cleanliness.","Incident Summary: An employee slipped on a wet floor near the entrance, resulting in minor injuries.","Slip, Trip and Fall Hazards, Housekeeping and Cleanliness."
