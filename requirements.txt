@@ -1,5 +1,5 @@
+streamlit
 pandas
-gspread
-gspread_dataframe
-openpyxl
+pillow
+openai
 requests
