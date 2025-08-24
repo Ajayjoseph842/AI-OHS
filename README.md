@@ -1,69 +1,117 @@
-# Hazero - AI Compliance Assistant (MVP Scaffold)
+AI-Powered Workplace Incident Analyzer
 
-Hazero is an AI-powered compliance assistant for SMB warehouses (Canada/US).
+A real-time, end-to-end system that automates the intake, analysis, and visualization of workplace incident reports using AI and Power BI.
 
-Core MVP features:
-- Free chatbot that answers OHSA/OSHA questions with citations (RAG stub)
-- Pro workflow: incident log, training tracker, export audit binder to PDF
-- Reverse trial: 30-day Pro, then downgrade to chatbot-only if not paid
+📌 Overview
 
-## Stack
-- Backend: FastAPI (Python)
-- Frontend: React + TypeScript (Vite)
-- DB: PostgreSQL (with pgvector for embeddings)
-- AI: OpenAI/OpenRouter (RAG stubbed)
-- PDF: ReportLab
-- Auth: JWT (email + password)
+This project is a personal prototype that leverages large language models (LLMs) to analyze occupational health and safety (OHS) incident reports in real time. It turns raw safety submissions into summarized narratives and hazard categories — visualized through interactive dashboards.
 
-## Prerequisites
-- Python 3.11+
-- Node 18+
-- Docker (for Postgres)
+Built to explore AI's potential in proactive safety compliance.
 
-## Quickstart
+🛠️ Tools & Tech Stack
 
-### 1) Start Postgres (with pgvector)
+Component
 
-```bash
-docker compose -f docker-compose.yml up -d
-```
+Tool/Service
 
-This exposes Postgres on localhost:5432.
+Form Collection
 
-### 2) Backend: install deps and run
+Microsoft Forms
 
-```bash
-cd backend
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-cp .env.example .env
-uvicorn app.main:app --reload
-```
+Data Sync
 
-By default, the app runs at http://localhost:8000
+Google Sheets
 
-- Interactive docs: http://localhost:8000/docs
-- OpenAPI JSON: http://localhost:8000/openapi.json
+AI Summarization
 
-### 3) Frontend: install deps and run
+OpenRouter + Python (Colab)
 
-```bash
-cd frontend
-npm install
-npm run dev
-```
+Visualization
 
-By default, Vite serves at http://localhost:5173
+Power BI Desktop
 
-### Environment variables
-Copy `.env.example` to `.env` under `backend/` and adjust as needed.
+Storage
 
-- `DATABASE_URL` points to the Docker Postgres.
-- `JWT_SECRET` set a strong secret for JWT.
-- `OPENAI_API_KEY` optional for RAG stub, can be empty locally.
+CSV / OneDrive (optional)
 
-### Notes
-- RAG and vector DB integrations are stubbed. Replace `services/rag.py` with your chosen provider (Pinecone or Supabase) and embed your OHSA/OSHA corpora.
-- PDF templates are simplistic; upgrade `services/pdf.py` to match inspector-credible forms (MOL Form 7, OSHA 300/301).
-- Reverse trial logic is implemented as a dependency that guards Pro-only routes.
+🔄 Workflow Pipeline
+
+
+
+✨ Features
+
+Real-time form intake of workplace incidents
+
+LLM-based summarization of report narratives
+
+Automatic hazard tagging using AI prompts
+
+Power BI dashboard with slicers, filters, and visual breakdowns
+
+📥 How to Run
+
+1. Fill the Microsoft Form
+
+Submit incidents through your form.
+
+2. Open the Google Colab notebook
+
+Run the script to fetch form responses
+
+AI summarizes the incidents and tags hazards
+
+Output is saved as enhanced_incidents.csv
+
+3. Import CSV into Power BI
+
+Open Power BI Desktop
+
+Load enhanced_incidents.csv
+
+Build visuals using fields like AI Summary, Hazard Tags, and Date
+
+📊 Dashboard Highlights
+
+Bar chart of hazard frequency
+
+Time-series of incidents over weeks/months
+
+AI summaries in an interactive table
+
+Filters by date, location, and hazard type
+
+🔍 Sample Use Case
+
+A worker reports an incident involving chemical fumes.
+
+🧠 AI summarizes it as a "chemical exposure due to lack of PPE"
+
+🏷️ Tags it under "Chemical Hazard", "PPE"
+
+📊 Appears in Power BI under relevant hazard filters
+
+📚 Learning Goals
+
+Explore LLM applications in real-world workflows
+
+Combine automation, AI, and visualization in one pipeline
+
+Build a practical portfolio project in the OHS domain
+
+🚀 Future Improvements
+
+Deploy as a web dashboard (Streamlit or Gradio)
+
+Add severity scoring
+
+Schedule automated runs (via Colab Pro or GCP)
+
+Trigger Slack/Email alerts for high-risk incidents
+
+🙋‍♂️ Author
+
+Ajay JosephInternational student, OHS + Forensic Science backgroundCurious about using AI to solve meaningful problems
+
+📬 Contact
+
+DM on LinkedIn if you're curious, hiring, or want to collaborate!
