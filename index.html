@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Safety Standards Chatbot</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+            height: 90vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+
+        .chat-area {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            height: 100%;
+        }
+
+        .chat-messages {
+            padding: 20px;
+            overflow-y: auto;
+            background: #f8f9fa;
+        }
+
+        .sidebar {
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .message {
+            margin-bottom: 20px;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .user-message {
+            text-align: right;
+        }
+
+        .user-message .bubble {
+            background: #667eea;
+            color: white;
+            padding: 12px 18px;
+            border-radius: 20px 20px 5px 20px;
+            display: inline-block;
+            max-width: 70%;
+            word-wrap: break-word;
+            white-space: pre-wrap;
+        }
+
+        .bot-message .bubble {
+            background: white;
+            color: #2c3e50;
+            padding: 15px 20px;
+            border-radius: 20px 20px 20px 5px;
+            display: inline-block;
+            max-width: 85%;
+            word-wrap: break-word;
+            white-space: pre-wrap;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-left: 4px solid #00d2d3;
+        }
+
+        .confidence-indicator {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            margin-top: 8px;
+        }
+
+        .confidence-high {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .confidence-medium {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .confidence-low {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .input-area {
+            padding: 20px;
+            background: white;
+            border-top: 1px solid #eee;
+            display: flex;
+            gap: 10px;
+        }
+
+        .input-field {
+            flex: 1;
+            padding: 12px 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 25px;
+            outline: none;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .input-field:focus {
+            border-color: #667eea;
+        }
+
+        .send-button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .send-button:hover:not(:disabled) {
+            transform: translateY(-2px);
+        }
+
+        .send-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .sidebar h3 {
+            color: #ecf0f1;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .sources-list {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        .sources-list li {
+            background: #34495e;
+            padding: 10px;
+            margin-bottom: 8px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+        }
+
+        .source-jurisdiction {
+            font-weight: bold;
+            color: #3498db;
+        }
+
+        .stats {
+            background: #34495e;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .typing-indicator {
+            display: none;
+            color: #6c757d;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        .typing-dots {
+            display: inline-block;
+        }
+
+        .typing-dots::after {
+            content: '';
+            animation: dots 1.5s steps(4, end) infinite;
+        }
+
+        @keyframes dots {
+            0%, 20% { content: ''; }
+            40% { content: '.'; }
+            60% { content: '..'; }
+            80%, 100% { content: '...'; }
+        }
+
+        .sample-questions {
+            margin-top: 20px;
+        }
+
+        .sample-question {
+            background: #34495e;
+            padding: 8px 12px;
+            margin-bottom: 5px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: background 0.3s;
+        }
+
+        .sample-question:hover {
+            background: #4a6741;
+        }
+
+        @media (max-width: 768px) {
+            .chat-area {
+                grid-template-columns: 1fr;
+                grid-template-rows: 1fr auto;
+            }
+            
+            .sidebar {
+                max-height: 200px;
+            }
+        }
+    </style>
+    <meta name="color-scheme" content="light dark">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Enhanced Safety Standards Assistant for OSHA, CSA, and OHSA.">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🦺 Enhanced Safety Standards Assistant</h1>
+            <p>Ask me about OSHA, CSA, and OHSA workplace safety requirements</p>
+        </div>
+        
+        <div class="chat-area">
+            <div class="chat-messages" id="chatMessages" role="log" aria-live="polite" aria-relevant="additions">
+                <div class="message bot-message">
+                    <div class="bubble">
+                        👋 Hello! I'm your enhanced safety assistant. I can help you understand workplace safety requirements from OSHA, CSA, and OHSA standards. 
+                        
+                        
+                        I'll provide confidence scores and cite specific regulations in my responses. Try asking me something like:
+                        
+                        
+                        • "Do I need a hard hat when using a ladder?"
+                        • "What are the fall protection requirements?"
+                        • "When do I need safety glasses?"
+                    </div>
+                </div>
+                <!-- Typing indicator message block -->
+                <div id="typingIndicator" class="message bot-message typing-indicator" aria-hidden="true">
+                    <div class="bubble">Assistant is typing<span class="typing-dots"></span></div>
+                </div>
+            </div>
+            
+            <div class="sidebar">
+                <h3>📊 Current Session</h3>
+                <div class="stats">
+                    <div class="stat-item">
+                        <span>Questions Asked:</span>
+                        <span id="questionCount">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span>Avg Confidence:</span>
+                        <span id="avgConfidence">-</span>
+                    </div>
+                    <div class="stat-item">
+                        <span>Sources Used:</span>
+                        <span id="totalSources">0</span>
+                    </div>
+                </div>
+                
+                <h3>📚 Last Response Sources</h3>
+                <ul class="sources-list" id="sourcesList">
+                    <li style="color: #95a5a6; font-style: italic;">Ask a question to see sources</li>
+                </ul>
+                
+                <div class="sample-questions">
+                    <h3>💡 Try These Questions</h3>
+                    <div class="sample-question" onclick="askSample('Do I need a hard hat when working at height?')">
+                        Hard hat requirements
+                    </div>
+                    <div class="sample-question" onclick="askSample('What are the lockout tagout procedures?')">
+                        Lockout/tagout procedures
+                    </div>
+                    <div class="sample-question" onclick="askSample('When do I need safety glasses?')">
+                        Eye protection requirements
+                    </div>
+                    <div class="sample-question" onclick="askSample('Fall protection requirements for 6 feet')">
+                        Fall protection rules
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="input-area">
+            <input 
+                type="text" 
+                id="messageInput" 
+                class="input-field" 
+                placeholder="Ask me about safety requirements..." 
+                onkeypress="handleKeyPress(event)"
+                aria-label="Message input"
+            >
+            <button id="sendButton" class="send-button" onclick="sendMessage()" aria-label="Send message">
+                Send
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // --- Configuration ---
+        const DEFAULT_WEBHOOK_URL = 'https://ajayj0seph.app.n8n.cloud/webhook/safety-chatbot';
+
+        function getStoredWebhookUrl() {
+            try {
+                return localStorage.getItem('enhancedSafetyChatWebhookUrl') || '';
+            } catch (e) {
+                return '';
+            }
+        }
+
+        function setStoredWebhookUrl(url) {
+            try {
+                localStorage.setItem('enhancedSafetyChatWebhookUrl', url);
+            } catch (e) {
+                // ignore
+            }
+        }
+
+        function getWebhookUrl() {
+            const params = new URLSearchParams(window.location.search);
+            const urlParam = params.get('webhook') || params.get('webhook_url');
+            if (urlParam) {
+                setStoredWebhookUrl(urlParam);
+                return urlParam;
+            }
+            const stored = getStoredWebhookUrl();
+            return stored || DEFAULT_WEBHOOK_URL;
+        }
+
+        let WEBHOOK_URL = getWebhookUrl();
+
+        // Session tracking
+        let sessionStats = {
+            questionsAsked: 0,
+            totalConfidence: 0,
+            totalSources: 0
+        };
+
+        function updateStats() {
+            document.getElementById('questionCount').textContent = String(sessionStats.questionsAsked);
+            const avg = sessionStats.questionsAsked > 0 
+                ? Math.round((sessionStats.totalConfidence / sessionStats.questionsAsked) * 100)
+                : null;
+            document.getElementById('avgConfidence').textContent = avg === null ? '-' : `${avg}%`;
+            document.getElementById('totalSources').textContent = String(sessionStats.totalSources);
+        }
+
+        function getOrCreateUserId() {
+            try {
+                const key = 'enhancedSafetyChatUserId';
+                const existing = localStorage.getItem(key);
+                if (existing) return existing;
+                const newId = 'web-user-' + Math.random().toString(36).slice(2, 10);
+                localStorage.setItem(key, newId);
+                return newId;
+            } catch (e) {
+                return 'web-user-' + Math.random().toString(36).slice(2, 10);
+            }
+        }
+
+        const PERSISTENT_USER_ID = getOrCreateUserId();
+
+        function confidenceLevelFromScore(score) {
+            if (typeof score !== 'number') return 'medium';
+            if (score >= 0.8) return 'high';
+            if (score >= 0.5) return 'medium';
+            return 'low';
+        }
+
+        function createMessageElement(content, isUser = false, data = null) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+
+            const bubble = document.createElement('div');
+            bubble.className = 'bubble';
+            bubble.textContent = content;
+            messageDiv.appendChild(bubble);
+
+            if (!isUser) {
+                const score = data && typeof data.confidence_score === 'number' ? data.confidence_score : null;
+                if (score !== null) {
+                    const confLevel = (data && data.confidence_level) || confidenceLevelFromScore(score);
+                    const confPercent = Math.round(score * 100);
+                    const indicator = document.createElement('div');
+                    indicator.className = `confidence-indicator confidence-${confLevel}`;
+                    indicator.textContent = `Confidence: ${confPercent}%`;
+                    bubble.appendChild(document.createElement('br'));
+                    bubble.appendChild(indicator);
+                }
+            }
+
+            return messageDiv;
+        }
+
+        function addMessage(content, isUser = false, data = null) {
+            const messagesDiv = document.getElementById('chatMessages');
+            const el = createMessageElement(content, isUser, data);
+            messagesDiv.appendChild(el);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        function updateSources(sources) {
+            const sourcesList = document.getElementById('sourcesList');
+            sourcesList.innerHTML = '';
+            
+            if (Array.isArray(sources) && sources.length > 0) {
+                sources.forEach(source => {
+                    const li = document.createElement('li');
+                    const j = document.createElement('div');
+                    j.className = 'source-jurisdiction';
+                    j.textContent = String(source.jurisdiction || '');
+                    const s = document.createElement('div');
+                    const section = source.section ? String(source.section) : '';
+                    const title = source.title ? String(source.title) : '';
+                    s.textContent = `${section}${section && title ? ': ' : ''}${title}`;
+                    const small = document.createElement('small');
+                    small.textContent = String(source.category || '');
+                    li.appendChild(j);
+                    li.appendChild(s);
+                    li.appendChild(small);
+                    sourcesList.appendChild(li);
+                });
+            } else {
+                const li = document.createElement('li');
+                li.style.color = '#95a5a6';
+                li.style.fontStyle = 'italic';
+                li.textContent = 'No sources found';
+                sourcesList.appendChild(li);
+            }
+        }
+
+        function showTyping() {
+            const el = document.getElementById('typingIndicator');
+            if (el) {
+                el.style.display = 'block';
+                el.setAttribute('aria-hidden', 'false');
+            }
+        }
+
+        function hideTyping() {
+            const el = document.getElementById('typingIndicator');
+            if (el) {
+                el.style.display = 'none';
+                el.setAttribute('aria-hidden', 'true');
+            }
+        }
+
+        async function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const sendButton = document.getElementById('sendButton');
+            const message = (input.value || '').trim();
+            
+            if (!message) return;
+            
+            addMessage(message, true);
+            input.value = '';
+            
+            sendButton.disabled = true;
+            input.disabled = true;
+            showTyping();
+            
+            const controller = new AbortController();
+            const timeout = setTimeout(() => controller.abort(), 25000);
+            
+            try {
+                const response = await fetch(WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        user_id: PERSISTENT_USER_ID,
+                        employee_id: 'emp001',
+                        message: message
+                    }),
+                    signal: controller.signal
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                sessionStats.questionsAsked++;
+                sessionStats.totalConfidence += (typeof data.confidence_score === 'number' ? data.confidence_score : 0);
+                const sourcesCount = Array.isArray(data.sources_used) ? data.sources_used.length : (Number(data.total_sources) || 0);
+                sessionStats.totalSources += sourcesCount;
+                updateStats();
+                
+                const answerText = (typeof data.answer === 'string' && data.answer.trim().length > 0)
+                    ? data.answer
+                    : 'Sorry, I could not process your question.';
+                addMessage(answerText, false, data);
+                updateSources(data.sources_used);
+                
+            } catch (error) {
+                console.error('Error:', error);
+                const msg = [
+                    '⚠️ I am having trouble connecting to the safety service.',
+                    '',
+                    'Please check:',
+                    '- Is your n8n workflow running?',
+                    '- Is the webhook URL correct?',
+                    '- See browser console for details',
+                    '',
+                    `Error: ${error && error.message ? error.message : String(error)}`
+                ].join('\n');
+                addMessage(msg, false);
+            } finally {
+                clearTimeout(timeout);
+                hideTyping();
+                sendButton.disabled = false;
+                input.disabled = false;
+                input.focus();
+            }
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        function askSample(question) {
+            const input = document.getElementById('messageInput');
+            input.value = question;
+            sendMessage();
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🤖 Enhanced Safety Chatbot Initializing...');
+            
+            const input = document.getElementById('messageInput');
+            const sendButton = document.getElementById('sendButton');
+            
+            if (input) {
+                input.focus();
+                console.log('✅ Input field found and focused');
+            } else {
+                console.error('❌ Input field not found');
+            }
+            
+            if (sendButton) {
+                console.log('✅ Send button found');
+            } else {
+                console.error('❌ Send button not found');
+            }
+            
+            updateStats();
+            
+            console.log('📡 Webhook URL:', WEBHOOK_URL);
+            console.log('👤 User ID:', PERSISTENT_USER_ID);
+            console.log('💡 Override with ?webhook=YOUR_URL or it will use localStorage/DEFAULT');
+            console.log('🎯 Ready to chat!');
+        });
+    </script>
+</body>
+<!--
+Improvements over original:
+- Fixed missing typing indicator element and made it accessible
+- Sanitized message rendering (textContent) and preserved formatting with pre-wrap
+- Added persistent user_id via localStorage; one user per browser
+- Made webhook URL configurable via query param and localStorage
+- Improved error handling with fetch timeout and clearer messages
+- Added aria-live to chat log and better disabled/focus states
+- Avoided innerHTML for untrusted data including sources list
+-->
+</html>
+
